@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Rental - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>NestFind</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="register.html">Register</a>
+            <a href="add-house.html">Add House</a>
+<a href="favorites.html">Favorites</a>
+        </nav>
+    </header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h2>Find Your Dream Home</h2>
+        <p>Explore the best houses available for rent</p>
+        <div class="search-bar">
+            <input type="text" id="search-location" placeholder="Search by location">
+            <input type="number" id="min-price" placeholder="Min Price">
+            <input type="number" id="max-price" placeholder="Max Price">
+            <button id="filter-btn">Search</button>
+        </div>
+    </div>
+</section>
+<section class="featured">
+    <h2 style="text-align:center; margin-bottom:20px;">Featured Houses</h2>
+    <div id="house-list"></div>
+</section>
+
+    
+
+
+<div id="houseContainer" class="house-container"></div>
+
+
+
+<style>
+.house-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.house-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  background: #fff;
+  transition: transform 0.3s;
+}
+
+.house-card:hover {
+  transform: scale(1.05);
+}
+
+.house-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+</style>
+
+<script>
+const houses = [
+  { image: "https://picsum.photos/300/200?random=1", title: "Modern Villa", location: "Chennai", price: "₹25,000/month" },
+  { image: "https://picsum.photos/300/200?random=2", title: "Cozy Apartment", location: "Bangalore", price: "₹18,000/month" },
+  { image: "https://picsum.photos/300/200?random=3", title: "Beach House", location: "Goa", price: "₹30,000/month" },
+  { image: "https://picsum.photos/300/200?random=4", title: "Luxury Bungalow", location: "Mumbai", price: "₹40,000/month" },
+  { image: "https://picsum.photos/300/200?random=5", title: "Compact Studio", location: "Hyderabad", price: "₹15,000/month" },
+  { image: "https://picsum.photos/300/200?random=6", title: "Elegant Villa", location: "Pune", price: "₹22,000/month" },
+  { image: "https://picsum.photos/300/200?random=7", title: "Family Duplex", location: "Coimbatore", price: "₹20,000/month" },
+  { image: "https://picsum.photos/300/200?random=8", title: "City Apartment", location: "Delhi", price: "₹28,000/month" },
+  { image: "https://picsum.photos/300/200?random=9", title: "Luxury Condo", location: "Kolkata", price: "₹35,000/month" },
+  { image: "https://picsum.photos/300/200?random=10", title: "Mountain View Home", location: "Ooty", price: "₹19,000/month" }
+];
+
+const container = document.getElementById("houseContainer");
+
+houses.forEach(house => {
+  const card = document.createElement("div");
+  card.classList.add("house-card");
+
+  card.innerHTML = `
+    <img src="${house.image}" alt="${house.title}">
+    <h3>${house.title}</h3>
+    <p>Location: ${house.location}</p>
+    <p>${house.price}</p>
+  `;
+
+  container.appendChild(card);
+});
+</script>
+
+<main>
+        <h2 style="text-align:center; margin-bottom:20px;">Available Houses</h2>
+  <!-- ✅ Place the search/filter inputs here -->
+    <div id="filters" style="text-align:center; margin-bottom:20px;">
+        <input type="text" id="search-location" placeholder="Search by location" style="padding:8px; width:200px; margin-right:10px;">
+        <input type="number" id="min-price" placeholder="Min Price" style="padding:8px; width:100px; margin-right:5px;">
+        <input type="number" id="max-price" placeholder="Max Price" style="padding:8px; width:100px; margin-right:5px;">
+        <button id="filter-btn" style="padding:8px 15px; background-color:#2c3e50; color:white; border:none; cursor:pointer;">Filter</button>
+    </div>
+
+        <div id="house-list">
+
+            <!-- Houses will appear here dynamically -->
+        </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

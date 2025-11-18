@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | NestFind</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #eaf1ff;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #f79c1d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e38b12;
+    }
+  </style>
+</head>
+<body action="index.html">
+  <div class="container">
+    <h2>Create Your Account</h2>
+    <p>Register to explore and book your dream house!</p>
+    <form id="registerForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="text" id="phone" placeholder="Your Phone" required />
+      <button type="submit">Register Now</button>
+    </form>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+
+      try {
+        const response = await fetch("http://localhost:5000/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, phone }),
+        });
+
+        const data = await response.json();
+        const msg = document.getElementById("message");
+
+        if (response.ok) {
+          msg.textContent = "✅ Registration successful!";
+          msg.style.color = "green";
+        } else {
+          msg.textContent = "❌ " + (data.message || "Error registering user.");
+          msg.style.color = "red";
+        }
+      } catch (err) {
+        document.getElementById("message").textContent =
+          "⚠️ Could not connect to server.";
+      }
+    });
+  </script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

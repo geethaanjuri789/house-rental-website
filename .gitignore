@@ -1,0 +1,26 @@
+# Node
+node_modules/
+npm-debug.log
+.env
+.DS_Store
+
+# VS Code
+.vscode/
+
+# logs
+logs
+*.log
+pids
+*.pid
+*.seed
+
+# build output
+dist/
+build/
+
+# OS
+Thumbs.db
+desktop.ini
+
+# optional: local DB or client folders
+instantclient_*

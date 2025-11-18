@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - View Registrations</title>
+</head>
+<body>
+  <h1>👩‍💼 Admin Dashboard</h1>
+  <h2>All Registrations</h2>
+  <table border="1" cellpadding="10">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>House Title</th>
+        <th>Location</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody id="regList"></tbody>
+  </table>
+
+  <script>
+    const API_URL = "http://localhost:5000";
+
+    async function loadRegistrations() {
+      const res = await fetch(`${API_URL}/registrations`);
+      const regs = await res.json();
+
+      const list = document.getElementById("regList");
+      list.innerHTML = "";
+
+      regs.forEach(r => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${r.name}</td>
+          <td>${r.email}</td>
+          <td>${r.houseId ? r.houseId.title : "N/A"}</td>
+          <td>${r.houseId ? r.houseId.location : "N/A"}</td>
+          <td>${r.houseId ? "₹" + r.houseId.price : "N/A"}</td>
+        `;
+        list.appendChild(row);
+      });
+    }
+
+    // Load data on page load
+    loadRegistrations();
+  </script>
+</body>
+</html>

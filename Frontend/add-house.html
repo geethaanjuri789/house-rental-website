@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add House - House Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Add New House</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="add-house.html">Add House</a>
+ <a href="favorites.html">Favorites</a>
+    </nav>
+</header>
+
+<main>
+ <section class="add-house-container">
+        <h2>Add a New House</h2>
+        <p>Fill in the details below to add a house for rent.</p>
+        <form id="add-house-form">
+            <input type="text" id="house-name" placeholder="House Name" required>
+            <input type="text" id="house-location" placeholder="Location" required>
+            <input type="number" id="house-price" placeholder="Price" required>
+            <input type="text" id="house-image" placeholder="Image URL (optional)">
+            <button type="submit">Add House</button>
+            <p id="house-msg" class="form-msg"></p>
+        </form>
+    </section>
+   </main>
+
+<script src="script.js"></script>
+</body>
+</html>
